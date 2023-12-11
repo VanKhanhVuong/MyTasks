@@ -14,11 +14,14 @@
 		669BCEAF2AF499B8002B67DF /* MyTasksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCEAE2AF499B8002B67DF /* MyTasksUITests.swift */; };
 		669BCEB12AF499B8002B67DF /* MyTasksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCEB02AF499B8002B67DF /* MyTasksUITestsLaunchTests.swift */; };
 		669BCEC42AF49BAB002B67DF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCEC22AF49BAB002B67DF /* HomeViewController.swift */; };
-		669BCEC92AF4A177002B67DF /* ClassName+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCEC82AF4A177002B67DF /* ClassName+Extention.swift */; };
-		669BCECB2AF4A1A7002B67DF /* UICollectionView+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCECA2AF4A1A7002B67DF /* UICollectionView+Extention.swift */; };
-		669BCED12AF4A311002B67DF /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCECF2AF4A311002B67DF /* TaskCell.swift */; };
 		669BCED62AF4D061002B67DF /* CreateTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCED42AF4D061002B67DF /* CreateTaskViewController.swift */; };
-		669BCEF82AF4E4DA002B67DF /* String+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 669BCEF72AF4E4DA002B67DF /* String+Extention.swift */; };
+		7096D3742B25A134008232C8 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7096D3732B25A134008232C8 /* SnapKit */; };
+		7096D3762B25A6FD008232C8 /* TaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7096D3752B25A6FD008232C8 /* TaskCell.swift */; };
+		70AAD7312B25D20A007BE86E /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AAD7302B25D20A007BE86E /* UICollectionView+Extension.swift */; };
+		70AAD7332B25D61C007BE86E /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AAD7322B25D61C007BE86E /* UITextField+Extension.swift */; };
+		70AAD7362B25E25B007BE86E /* PickDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AAD7352B25E25B007BE86E /* PickDateView.swift */; };
+		70AAD7382B25E9B0007BE86E /* PickColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AAD7372B25E9B0007BE86E /* PickColorView.swift */; };
+		70AAD73B2B25F036007BE86E /* ColorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AAD73A2B25F036007BE86E /* ColorCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,11 +53,13 @@
 		669BCEAE2AF499B8002B67DF /* MyTasksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksUITests.swift; sourceTree = "<group>"; };
 		669BCEB02AF499B8002B67DF /* MyTasksUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTasksUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		669BCEC22AF49BAB002B67DF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		669BCEC82AF4A177002B67DF /* ClassName+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassName+Extention.swift"; sourceTree = "<group>"; };
-		669BCECA2AF4A1A7002B67DF /* UICollectionView+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extention.swift"; sourceTree = "<group>"; };
-		669BCECF2AF4A311002B67DF /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
 		669BCED42AF4D061002B67DF /* CreateTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTaskViewController.swift; sourceTree = "<group>"; };
-		669BCEF72AF4E4DA002B67DF /* String+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extention.swift"; sourceTree = "<group>"; };
+		7096D3752B25A6FD008232C8 /* TaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCell.swift; sourceTree = "<group>"; };
+		70AAD7302B25D20A007BE86E /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		70AAD7322B25D61C007BE86E /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		70AAD7352B25E25B007BE86E /* PickDateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickDateView.swift; sourceTree = "<group>"; };
+		70AAD7372B25E9B0007BE86E /* PickColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickColorView.swift; sourceTree = "<group>"; };
+		70AAD73A2B25F036007BE86E /* ColorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7096D3742B25A134008232C8 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,9 +191,8 @@
 		669BCEC72AF4A157002B67DF /* Extentions */ = {
 			isa = PBXGroup;
 			children = (
-				669BCEC82AF4A177002B67DF /* ClassName+Extention.swift */,
-				669BCECA2AF4A1A7002B67DF /* UICollectionView+Extention.swift */,
-				669BCEF72AF4E4DA002B67DF /* String+Extention.swift */,
+				70AAD7302B25D20A007BE86E /* UICollectionView+Extension.swift */,
+				70AAD7322B25D61C007BE86E /* UITextField+Extension.swift */,
 			);
 			path = Extentions;
 			sourceTree = "<group>";
@@ -195,7 +200,7 @@
 		669BCECC2AF4A267002B67DF /* Parts */ = {
 			isa = PBXGroup;
 			children = (
-				669BCED82AF4D39B002B67DF /* Views */,
+				70AAD7342B25E24B007BE86E /* Views */,
 				669BCECD2AF4A275002B67DF /* Cells */,
 			);
 			path = Parts;
@@ -204,17 +209,10 @@
 		669BCECD2AF4A275002B67DF /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				669BCECE2AF4A289002B67DF /* TaskCell */,
+				7096D3752B25A6FD008232C8 /* TaskCell.swift */,
+				70AAD73A2B25F036007BE86E /* ColorCell.swift */,
 			);
 			path = Cells;
-			sourceTree = "<group>";
-		};
-		669BCECE2AF4A289002B67DF /* TaskCell */ = {
-			isa = PBXGroup;
-			children = (
-				669BCECF2AF4A311002B67DF /* TaskCell.swift */,
-			);
-			path = TaskCell;
 			sourceTree = "<group>";
 		};
 		669BCED32AF4D041002B67DF /* Create */ = {
@@ -225,9 +223,11 @@
 			path = Create;
 			sourceTree = "<group>";
 		};
-		669BCED82AF4D39B002B67DF /* Views */ = {
+		70AAD7342B25E24B007BE86E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70AAD7352B25E25B007BE86E /* PickDateView.swift */,
+				70AAD7372B25E9B0007BE86E /* PickColorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -248,6 +248,9 @@
 			dependencies = (
 			);
 			name = MyTasks;
+			packageProductDependencies = (
+				7096D3732B25A134008232C8 /* SnapKit */,
+			);
 			productName = MyTasks;
 			productReference = 669BCE8A2AF499B6002B67DF /* MyTasks.app */;
 			productType = "com.apple.product-type.application";
@@ -320,6 +323,9 @@
 				Base,
 			);
 			mainGroup = 669BCE812AF499B6002B67DF;
+			packageReferences = (
+				7096D3722B25A134008232C8 /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = 669BCE8B2AF499B6002B67DF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -363,12 +369,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				669BCE8E2AF499B6002B67DF /* AppDelegate.swift in Sources */,
-				669BCEF82AF4E4DA002B67DF /* String+Extention.swift in Sources */,
+				70AAD7312B25D20A007BE86E /* UICollectionView+Extension.swift in Sources */,
+				70AAD73B2B25F036007BE86E /* ColorCell.swift in Sources */,
+				7096D3762B25A6FD008232C8 /* TaskCell.swift in Sources */,
+				70AAD7332B25D61C007BE86E /* UITextField+Extension.swift in Sources */,
+				70AAD7362B25E25B007BE86E /* PickDateView.swift in Sources */,
 				669BCEC42AF49BAB002B67DF /* HomeViewController.swift in Sources */,
-				669BCECB2AF4A1A7002B67DF /* UICollectionView+Extention.swift in Sources */,
-				669BCEC92AF4A177002B67DF /* ClassName+Extention.swift in Sources */,
-				669BCED12AF4A311002B67DF /* TaskCell.swift in Sources */,
 				669BCED62AF4D061002B67DF /* CreateTaskViewController.swift in Sources */,
+				70AAD7382B25E9B0007BE86E /* PickColorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -713,6 +721,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7096D3722B25A134008232C8 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7096D3732B25A134008232C8 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7096D3722B25A134008232C8 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 669BCE822AF499B6002B67DF /* Project object */;
 }

@@ -6,11 +6,25 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController {
     
-    @IBOutlet weak var homeCollectionView: UICollectionView!
-    @IBOutlet weak var addTaskButton: UIButton!
+    // MARK: Init View
+    private lazy var homeCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .white
+        return collectionView
+    }()
+    
+    private lazy var addTaskButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Task", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .red
+        return button
+    }()
     
     private var colors: [UIColor] = [
         .systemCyan,
@@ -24,18 +38,46 @@ class HomeViewController: UIViewController {
         .systemTeal
     ]
     
+    // MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupDelegate()
+        setupAction()
     }
     
+    // MARK: Setup
     private func setupUI() {
-        homeCollectionView.backgroundColor = .white
-        
+        view.addSubview(homeCollectionView)
+        homeCollectionView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.left.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalToSuperview().offset(-100)
+        }
+
+        view.addSubview(addTaskButton)
+        addTaskButton.snp.makeConstraints {
+            $0.width.equalTo(200)
+            $0.height.equalTo(50)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(homeCollectionView.snp.bottom).offset(10)
+        }
+    }
+    
+    private func setupAction() {
         let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(handleLongPressGesture))
         homeCollectionView.addGestureRecognizer(longPressGesture)
+        addTaskButton.addTarget(self, action: #selector(createTask), for: .touchUpInside)
     }
+    
+    private func setupDelegate() {
+        homeCollectionView.delegate = self // Ensure self conforms to UICollectionViewDelegate
+        homeCollectionView.dataSource = self // Also set the data source
+        homeCollectionView.registerCell(TaskCell.self)
+    }
+    
+    // MARK: Action
     
     @objc private func handleLongPressGesture(_ gesture: UILongPressGestureRecognizer) {
         let gestureLocation = gesture.location(in: homeCollectionView)
@@ -55,26 +97,14 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
-    private func setupDelegate() {
-        homeCollectionView.delegate = self
-        homeCollectionView.dataSource = self
-        
-        homeCollectionView.register(cellType: TaskCell.self)
-    }
-    
-    private func createTask() {
+    @objc func createTask() {
         let createTaskVC = CreateTaskViewController()
-        createTaskVC.modalPresentationStyle = .fullScreen
+        createTaskVC.modalPresentationStyle = .formSheet
         self.present(createTaskVC, animated: true)
     }
-    
-    @IBAction func addTaskTapped(_ sender: Any) {
-        createTask()
-    }
-    
 }
 
+// MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let item = colors.remove(at: sourceIndexPath.item)
@@ -82,13 +112,14 @@ extension HomeViewController: UICollectionViewDelegate {
     }
 }
 
+// MARK: UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return colors.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(with: TaskCell.self, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(TaskCell.self, for: indexPath)
         cell.containerView.backgroundColor = self.colors[indexPath.item]
         return cell
     }
@@ -97,10 +128,14 @@ extension HomeViewController: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width / 3, height: collectionView.frame.width / 3)
+        let paddingSpace: CGFloat = 10 * 3
+        let availableWidth = collectionView.frame.width - paddingSpace
+        let widthPerItem = availableWidth / 2
+        
+        return CGSize(width: widthPerItem, height: widthPerItem)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }
 }
