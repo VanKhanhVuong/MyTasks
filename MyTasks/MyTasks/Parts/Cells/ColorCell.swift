@@ -10,7 +10,7 @@ import SnapKit
 
 class ColorCell: UICollectionViewCell {
     
-    let containerView: UIView = {
+    private lazy var containerView: UIView = {
         let view = UIView()
         return view
     }()

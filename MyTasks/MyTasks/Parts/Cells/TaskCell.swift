@@ -10,17 +10,37 @@ import SnapKit
 
 class TaskCell: UICollectionViewCell {
     
-    let containerView: UIView = {
+    lazy var containerView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 15
         return view
     }()
     
-    private let titleLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 16)
         return label
+    }()
+    
+    private lazy var desLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    private lazy var dateLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .black
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    private lazy var checkButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
+        return button
     }()
     
     override init(frame: CGRect) {
@@ -34,21 +54,47 @@ class TaskCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.addSubview(containerView)
-        containerView.addSubview(titleLabel)
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
+        containerView.addSubview(titleLabel)
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(30)
+        }
+        
+        containerView.addSubview(desLabel)
+        desLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(8)
+            make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(80)
+        }
+        
+        containerView.addSubview(checkButton)
+        checkButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().offset(-8)
             make.bottom.equalToSuperview().offset(-8)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
+        }
+        
+        containerView.addSubview(dateLabel)
+        dateLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(checkButton.snp.centerY)
+            make.leading.equalToSuperview().offset(8)
+            make.height.equalTo(30)
         }
     }
     
-    func configure(withTitle title: String) {
-        titleLabel.text = title
+    func configure(withTask task: Task) {
+        titleLabel.text = task.title
+        desLabel.text = task.description
+        dateLabel.text = task.date.formatted()
+        containerView.backgroundColor = task.priorityColor.getColorWith()
     }
 }

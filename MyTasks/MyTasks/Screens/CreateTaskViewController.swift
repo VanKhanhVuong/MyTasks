@@ -12,11 +12,7 @@ import SnapKit
 class CreateTaskViewController: UIViewController {
     
     // MARK: Init View
-    private lazy var headerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        return view
-    }()
+    private let headerView = HeaderView()
     
     private lazy var contentScrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -53,7 +49,6 @@ class CreateTaskViewController: UIViewController {
     private let pickDateView = PickDateView()
     
     private let pickColorView = PickColorView()
-
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
@@ -87,7 +82,7 @@ class CreateTaskViewController: UIViewController {
         view.addSubview(headerView)
         headerView.snp.makeConstraints { make in
             make.top.left.equalToSuperview()
-            make.height.equalTo(80)
+            make.height.equalTo(40)
             make.width.equalToSuperview()
         }
         
@@ -129,6 +124,9 @@ class CreateTaskViewController: UIViewController {
             }
         }
         
+        headerView.configView(titleText: "Create Task", leftIcon: "", leftTextButton: "Close", rightIcon: "", rightTextButton: "Create")
+        headerView.delegate = self
+        
         pickDateView.configView(title: "Pick Date:")
         pickColorView.configView(title: "Pick Color:")
         
@@ -153,5 +151,16 @@ extension CreateTaskViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+// MARK: HeaderViewEvents
+extension CreateTaskViewController: HeaderViewEvents {
+    func tappedLeftButton() {
+        self.dismiss(animated: true)
+    }
+    
+    func tappedRightButton() {
+        print("Create task")
     }
 }

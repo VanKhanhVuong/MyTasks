@@ -11,6 +11,16 @@ import SnapKit
 class HomeViewController: UIViewController {
     
     // MARK: Init View
+    private lazy var homeScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     private lazy var homeCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -26,17 +36,11 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    private var colors: [UIColor] = [
-        .systemCyan,
-        .systemGreen,
-        .systemBlue,
-        .systemRed,
-        .systemOrange,
-        .systemBrown,
-        .systemYellow,
-        .systemPurple,
-        .systemTeal
-    ]
+    let headerView = HeaderView()
+    let summaryView = SummaryView()
+    let taskListView = ListTaskView()
+    
+    private var taskViewModel = TaskViewModel()
     
     // MARK: viewDidLoad
     override func viewDidLoad() {
@@ -48,21 +52,50 @@ class HomeViewController: UIViewController {
     
     // MARK: Setup
     private func setupUI() {
-        view.addSubview(homeCollectionView)
-        homeCollectionView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.left.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalToSuperview().offset(-100)
+        view.addSubview(homeScrollView)
+        homeScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
-
-        view.addSubview(addTaskButton)
-        addTaskButton.snp.makeConstraints {
-            $0.width.equalTo(200)
-            $0.height.equalTo(50)
-            $0.centerX.equalToSuperview()
-            $0.top.equalTo(homeCollectionView.snp.bottom).offset(10)
+        
+        homeScrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(homeScrollView.snp.edges)
+            make.width.equalTo(homeScrollView.snp.width)
         }
+        
+        contentView.addSubview(headerView)
+        headerView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(50) // Đặt chiều cao của summaryView
+        }
+        
+        contentView.addSubview(summaryView)
+        summaryView.snp.makeConstraints { make in
+            make.top.equalTo(headerView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(150)
+        }
+        
+        contentView.addSubview(homeCollectionView)
+        homeCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(summaryView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(700) // Đặt chiều cao của taskListView
+            make.bottom.equalToSuperview().priority(.low) // Set ưu tiên thấp để contentView có thể mở rộng đúng chiều cao
+        }
+        
+        
+        
+        //        view.addSubview(addTaskButton)
+        //        addTaskButton.snp.makeConstraints {
+        //            $0.width.equalTo(200)
+        //            $0.height.equalTo(50)
+        //            $0.centerX.equalToSuperview()
+        //            $0.top.equalTo(homeCollectionView.snp.bottom).offset(10)
+        //        }
+        
+        
+        headerView.configView(titleText: "Home", leftIcon: "", leftTextButton: "", rightIcon: "person.circle", rightTextButton: "")
     }
     
     private func setupAction() {
@@ -107,20 +140,20 @@ class HomeViewController: UIViewController {
 // MARK: UICollectionViewDelegate
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        let item = colors.remove(at: sourceIndexPath.item)
-        colors.insert(item, at: destinationIndexPath.item)
+        let item = taskViewModel.taskList.remove(at: sourceIndexPath.item)
+        taskViewModel.taskList.insert(item, at: destinationIndexPath.item)
     }
 }
 
 // MARK: UICollectionViewDataSource
 extension HomeViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return colors.count
+        return taskViewModel.taskList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(TaskCell.self, for: indexPath)
-        cell.containerView.backgroundColor = self.colors[indexPath.item]
+        cell.configure(withTask: taskViewModel.taskList[indexPath.item])
         return cell
     }
 }
